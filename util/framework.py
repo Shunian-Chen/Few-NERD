@@ -392,6 +392,7 @@ class FewShotNERFramework:
 
         it = 0
         while it + 1 < train_iter:
+            print('Iter: {}'.format(it))
             for _, (support, query) in enumerate(self.train_data_loader):
                 label = torch.cat(query['label'], 0)
                 if torch.cuda.is_available():
@@ -426,7 +427,7 @@ class FewShotNERFramework:
                 if (it + 1) % 100 == 0 or (it + 1) % val_step == 0:
                     precision = correct_cnt / pred_cnt
                     recall = correct_cnt / label_cnt
-                    f1 = 2 * precision * recall / (precision + recall)
+                    f1 = 2 * precision * recall / (precision + recall + 1e-6)
                     sys.stdout.write('step: {0:4} | loss: {1:2.6f} | [ENTITY] precision: {2:3.4f}, recall: {3:3.4f}, f1: {4:3.4f}'\
                         .format(it + 1, iter_loss/ iter_sample, precision, recall, f1) + '\r')
                 sys.stdout.flush()
@@ -476,7 +477,7 @@ class FewShotNERFramework:
             vit_labels = vit_labels.detach().cpu().numpy().tolist()
             for label in vit_labels:
                 pred.append(label-1)
-        return torch.tensor(pred).cuda()
+        return torch.tensor(pred).cuda() if torch.cuda.is_available() else torch.tensor(pred)
 
     def eval(self,
             model,
