@@ -59,6 +59,12 @@
 		"ghcr.io/devcontainers/features/node:1": {
 			"version": "none"
 		},
-		"ghcr.io/devcontainers/features/docker-from-docker:1": {}
-	}
+		"ghcr.io/devcontainers/features/docker-from-docker:1": {},
+		"ghcr.io/devcontainers-contrib/features/bash-command:1": {},
+		"ghcr.io/devcontainers/features/nvidia-cuda:1": {}
+	},
+	"runArgs": [
+		"--gpus",
+		"all"
+	]
 }
