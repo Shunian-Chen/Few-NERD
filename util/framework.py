@@ -3,6 +3,7 @@ import sklearn.metrics
 import numpy as np
 import sys
 import time
+from tqdm import tqdm
 from . import word_encoder
 from . import data_loader
 import torch
@@ -319,7 +320,7 @@ class FewShotNERFramework:
         if int(torch_version[0]) == 0 and int(torch_version[1]) < 4:
             return x[0]
         else:
-            return x.item()
+            return x.detach().item()
 
     def train(self,
               model,
@@ -351,18 +352,18 @@ class FewShotNERFramework:
     
         # Init optimizer
         print('Use bert optim!')
-        parameters_to_optimize = list(model.named_parameters())
-        no_decay = ['bias', 'LayerNorm.bias', 'LayerNorm.weight']
-        parameters_to_optimize = [
-            {'params': [p for n, p in parameters_to_optimize 
-                if not any(nd in n for nd in no_decay)], 'weight_decay': 0.01},
-            {'params': [p for n, p in parameters_to_optimize
-                if any(nd in n for nd in no_decay)], 'weight_decay': 0.0}
-        ]
+        # parameters_to_optimize = list(model.named_parameters())
+        # no_decay = ['bias', 'LayerNorm.bias', 'LayerNorm.weight']
+        # parameters_to_optimize = [
+        #     {'params': [p for n, p in parameters_to_optimize 
+        #         if not any(nd in n for nd in no_decay)], 'weight_decay': 0.01},
+        #     {'params': [p for n, p in parameters_to_optimize
+        #         if any(nd in n for nd in no_decay)], 'weight_decay': 0.0}
+        # ]
         if use_sgd_for_bert:
-            optimizer = torch.optim.SGD(parameters_to_optimize, lr=learning_rate)
+            optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)
         else:
-            optimizer = AdamW(parameters_to_optimize, lr=learning_rate, correct_bias=False)
+            optimizer = AdamW(model.parameters(), lr=learning_rate, correct_bias=False)
         scheduler = get_linear_schedule_with_warmup(optimizer, num_warmup_steps=warmup_step, num_training_steps=train_iter) 
         
         # load model
@@ -378,7 +379,9 @@ class FewShotNERFramework:
 
         if fp16:
             from apex import amp
-            model, optimizer = amp.initialize(model, optimizer, opt_level='O1')
+            print("-------Train with fp16-----------")
+            amp.init()
+            model, optimizer = amp.initialize(model, optimizer, opt_level='O2')
 
         model.train()
 
@@ -393,7 +396,8 @@ class FewShotNERFramework:
         it = 0
         while it + 1 < train_iter:
             print('Iter: {}'.format(it))
-            for _, (support, query) in enumerate(self.train_data_loader):
+            for _, (support, query) in tqdm(enumerate(self.train_data_loader)):
+                torch.cuda.empty_cache() 
                 label = torch.cat(query['label'], 0)
                 if torch.cuda.is_available():
                     for k in support:
