@@ -1,0 +1,72 @@
+Archive:  data/inter.zip
+   creating: data/inter/
+  inflating: data/__MACOSX/._inter   
+  inflating: data/inter/dev.txt      
+  inflating: data/__MACOSX/inter/._dev.txt  
+  inflating: data/inter/train.txt    
+  inflating: data/__MACOSX/inter/._train.txt  
+  inflating: data/inter/test.txt     
+  inflating: data/__MACOSX/inter/._test.txt  
+5-way-5-shot Few-Shot NER
+model: structshot
+max_length: 32
+mode: inter
+loading model and tokenizer...
+loading data...
+use structshot
+model-save-path: checkpoint/structshot-inter-5-5-seed0.pth.tar
+Start training...
+Use bert optim!
+Iter: 0
+step:  100 | loss: 176.659050 | [ENTITY] precision: 0.0223, recall: 0.0362, f1: 0.02765-way-5-shot Few-Shot NER
+model: structshot
+max_length: 32
+mode: inter
+loading model and tokenizer...
+loading data...
+use structshot
+model-save-path: checkpoint/structshot-inter-5-5-seed0.pth.tar
+Start training...
+Use bert optim!
+Iter: 0
+step:  100 | loss: 158.000774 | [ENTITY] precision: 0.0238, recall: 0.0365, f1: 0.0288step:  200 | loss: 89.891564 | [ENTITY] precision: 0.0192, recall: 0.0338, f1: 0.0245step:  300 | loss: 63.820416 | [ENTITY] precision: 0.0156, recall: 0.0291, f1: 0.0203step:  400 | loss: 50.089677 | [ENTITY] precision: 0.0142, recall: 0.0269, f1: 0.0186step:  500 | loss: 41.422590 | [ENTITY] precision: 0.0128, recall: 0.0245, f1: 0.0168step:  600 | loss: 35.312545 | [ENTITY] precision: 0.0122, recall: 0.0234, f1: 0.0160step:  700 | loss: 30.751470 | [ENTITY] precision: 0.0120, recall: 0.0233, f1: 0.0158step:  800 | loss: 27.266965 | [ENTITY] precision: 0.0124, recall: 0.0239, f1: 0.0163step:  900 | loss: 24.515855 | [ENTITY] precision: 0.0127, recall: 0.0245, f1: 0.0167step: 1000 | loss: 22.270078 | [ENTITY] precision: 0.0132, recall: 0.0253, f1: 0.0173
+Use val dataset
+10-way-1-shot Few-Shot NER
+model: structshot
+max_length: 64
+mode: inter
+loading model and tokenizer...
+loading data...
+use structshot
+model-save-path: checkpoint/structshot-inter-10-1-seed0.pth.tar
+Start training...
+Use bert optim!
+Iter: 0
+step:  100 | loss: 211.284842 | [ENTITY] precision: 0.0091, recall: 0.0152, f1: 0.0114step:  200 | loss: 114.706155 | [ENTITY] precision: 0.0079, recall: 0.0146, f1: 0.0103step:  300 | loss: 79.698890 | [ENTITY] precision: 0.0076, recall: 0.0145, f1: 0.0100step:  400 | loss: 61.687608 | [ENTITY] precision: 0.0068, recall: 0.0130, f1: 0.0089step:  500 | loss: 50.671235 | [ENTITY] precision: 0.0065, recall: 0.0126, f1: 0.0086step:  600 | loss: 43.154475 | [ENTITY] precision: 0.0065, recall: 0.0126, f1: 0.0085step:  700 | loss: 37.629067 | [ENTITY] precision: 0.0063, recall: 0.0123, f1: 0.0084step:  800 | loss: 33.401123 | [ENTITY] precision: 0.0064, recall: 0.0126, f1: 0.0085step:  900 | loss: 30.045270 | [ENTITY] precision: 0.0066, recall: 0.0128, f1: 0.0087step: 1000 | loss: 27.335166 | [ENTITY] precision: 0.0067, recall: 0.0130, f1: 0.0088
+Use val dataset
+10-way-5-shot Few-Shot NER
+model: structshot
+max_length: 32
+mode: inter
+loading model and tokenizer...
+loading data...
+use structshot
+model-save-path: checkpoint/structshot-inter-10-5-seed0.pth.tar
+Start training...
+Use bert optim!
+Iter: 0
+step:  100 | loss: 165.328645 | [ENTITY] precision: 0.0139, recall: 0.0237, f1: 0.0175step:  200 | loss: 94.265571 | [ENTITY] precision: 0.0097, recall: 0.0191, f1: 0.0129step:  300 | loss: 67.188402 | [ENTITY] precision: 0.0077, recall: 0.0159, f1: 0.0104step:  400 | loss: 52.516693 | [ENTITY] precision: 0.0066, recall: 0.0139, f1: 0.0090step:  500 | loss: 43.709120 | [ENTITY] precision: 0.0057, recall: 0.0122, f1: 0.0078step:  600 | loss: 37.582222 | [ENTITY] precision: 0.0054, recall: 0.0115, f1: 0.0073step:  700 | loss: 32.994752 | [ENTITY] precision: 0.0053, recall: 0.0113, f1: 0.0072step:  800 | loss: 29.489426 | [ENTITY] precision: 0.0049, recall: 0.0104, f1: 0.0067step:  900 | loss: 26.608273 | [ENTITY] precision: 0.0046, recall: 0.0100, f1: 0.0063step: 1000 | loss: 24.240887 | [ENTITY] precision: 0.0044, recall: 0.0095, f1: 0.0060
+Use val dataset
+5-way-1-shot Few-Shot NER
+model: structshot
+max_length: 64
+mode: inter
+loading model and tokenizer...
+loading data...
+use structshot
+model-save-path: checkpoint/structshot-inter-5-1-seed0.pth.tar
+Start training...
+Use bert optim!
+Iter: 0
+step:  100 | loss: 216.280948 | [ENTITY] precision: 0.0130, recall: 0.0215, f1: 0.0162step:  200 | loss: 118.341639 | [ENTITY] precision: 0.0160, recall: 0.0284, f1: 0.0205step:  300 | loss: 83.112417 | [ENTITY] precision: 0.0153, recall: 0.0276, f1: 0.0197step:  400 | loss: 64.650407 | [ENTITY] precision: 0.0151, recall: 0.0274, f1: 0.0194step:  500 | loss: 53.255116 | [ENTITY] precision: 0.0156, recall: 0.0284, f1: 0.0201step:  600 | loss: 45.493698 | [ENTITY] precision: 0.0165, recall: 0.0301, f1: 0.0213step:  700 | loss: 39.772883 | [ENTITY] precision: 0.0173, recall: 0.0315, f1: 0.0224step:  800 | loss: 35.378139 | [ENTITY] precision: 0.0187, recall: 0.0339, f1: 0.0241step:  900 | loss: 31.902773 | [ENTITY] precision: 0.0199, recall: 0.0359, f1: 0.0256step: 1000 | loss: 29.055203 | [ENTITY] precision: 0.0210, recall: 0.0376, f1: 0.0269
+Use val dataset
