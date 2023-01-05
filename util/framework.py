@@ -379,7 +379,7 @@ class FewShotNERFramework:
 
         if fp16:
             from apex import amp
-            print("-------Train with fp16-----------")
+
             amp.init()
             model, optimizer = amp.initialize(model, optimizer, opt_level='O2')
 
@@ -395,7 +395,7 @@ class FewShotNERFramework:
 
         it = 0
         while it + 1 < train_iter:
-            print('Iter: {}'.format(it))
+
             for _, (support, query) in tqdm(enumerate(self.train_data_loader)):
                 torch.cuda.empty_cache() 
                 label = torch.cat(query['label'], 0)
